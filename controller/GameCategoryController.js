@@ -12,23 +12,23 @@ class GamesCategoryController{
 
         try {
             if(!GameName || !GameImage || !FullDetail || !ImageDetail){
-                return res.json({success: false, message: 'Thiếu dữ liệu cần thiết !!'});
+                return res.json({success: false, message: 'missing data !!'});
             }else{
                 const findGameName =await GameCategory.findOne({gameName: GameName});
                 if(findGameName){
-                    return res.json({success: false, message: 'Tên game đã tồn tại'})
+                    return res.json({success: false, message: 'Game Name has already exists'})
                 }
                 const LinkGameImage =await upload.UploadFile(GameImage);
                 const LinkImageDetail=await upload.UploadFile(ImageDetail);
                 if(!LinkGameImage=="" && !LinkImageDetail ==""){
                     const newGame =new GameCategory({gameName:GameName,gameImage:LinkGameImage,fullDetail:FullDetail,imageDetail:LinkImageDetail});
                     await newGame.save();
-                    return res.json({success: true, message: 'Thêm thành công !!'+LinkGameImage+" and "+LinkImageDetail})
+                    return res.json({success: true, message: 'Add Success !!'+LinkGameImage+" and "+LinkImageDetail})
                 }
             }
         } catch (error) {
             console.log(error);
-            return res.json({success: false, message: 'Lỗi !!'});
+            return res.json({success: false, message: 'Erorr !!'});
         }
     }
 
@@ -38,7 +38,7 @@ class GamesCategoryController{
             return res.json({success: true,listAllGame});
         } catch (error) {
             console.log(error);
-            return res.json({success: false, message: 'Lỗi !!'});
+            return res.json({success: false, message: 'Error !!'});
         }
     }
 
@@ -46,13 +46,13 @@ class GamesCategoryController{
         try {
             const IdGame =req.body.idGame;
             if(!IdGame){
-                return res.json({success: false, message: 'Thiếu dữ liệu cần thiết !!'});
+                return res.json({success: false, message: 'Missing data !!'});
             }
             const ResultGameById = await GameCategory.findById(IdGame);
             return res.json({success:true,ResultGameById});
         } catch (error) {
             console.log(error);
-            return res.json({success: false, message: 'Lỗi !!'});
+            return res.json({success: false, message: 'Error !!'});
         }
     }
 
@@ -64,7 +64,7 @@ class GamesCategoryController{
             const upFullDetail =req.body.fullDetail;
             const upImageDetail =req.body.imageDetail;
             if(!upIdGame){
-                return res.json({success: false, message: 'Thiếu dữ liệu cần thiết !!'});
+                return res.json({success: false, message: 'Missing Data !!'});
             }
             const upResultGame = await GameCategory.findById(upIdGame);
             var flag =false;
@@ -87,13 +87,13 @@ class GamesCategoryController{
                 flag =true;
             }
             if(flag==false){
-                return res.json({success: false, message: "Không có gì cần cập nhật"});
+                return res.json({success: false, message: "Nothing to update"});
             }else{
-                return res.json({success: true,message: "Cập nhật thành công"});
+                return res.json({success: true,message: "Update Success"});
             }
         } catch (error) {
             console.log(error);
-            return res.json({success: false, message: 'Lỗi !!'});
+            return res.json({success: false, message: 'Error !!'});
         }
     }
 
@@ -101,13 +101,13 @@ class GamesCategoryController{
         try {
             const delIdGame =req.body.idGame;
             if(!delIdGame){
-                return res.json({success: false, message: 'Thiếu dữ liệu cần thiết !!'});
+                return res.json({success: false, message: 'Missing Data !!'});
             }
             await GameCategory.findByIdAndDelete(delIdGame);
-            return res.json({success: true,message: "Xóa thành công"});
+            return res.json({success: true,message: "Delete Success"});
         } catch (error) {
             console.log(error);
-            return res.json({success: false, message: 'Lỗi !!'});
+            return res.json({success: false, message: 'Error !!'});
         }
     }
 }
