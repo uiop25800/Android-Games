@@ -1,8 +1,9 @@
-const GameCategory =require('./GameCategory.routes');
-
+const GameCategoryRoute =require('../routers/GameCategoryRoutes');
+const UserRoute =require('../routers/UserRoutes');
 
 function route(app){
-    app.use('/api/categoryGame',GameCategory);
+    app.use('/categoryGame', GameCategoryRoute);
+    app.use('/user', UserRoute);
 }
 
 module.exports =route;

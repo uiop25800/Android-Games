@@ -3,7 +3,7 @@ const upload =require('../middleware/imgurUpload');
 const GameCategory =require('../models/GameCategory');
 
 class GamesCategoryController{
-    // /api/categoryGame/postGame
+    // /categoryGame/postGame
     async postGame(req,res){
         const GameName =req.body.gameName.trim();
         const GameImage =req.body.gameImage;

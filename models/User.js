@@ -10,19 +10,9 @@ const SchemaUser =Schema({
         type: String,
         require: true
     },
-    userInfo:{
-        fullName:{
-            type: String,
-            default: "none"
-        },
-        email:{
-            type: String,
-            default: "none"
-        },
-        avatar:{
-            type: String,
-            default: "none"
-        }
+    tokenUserInfo:{
+        type: String,
+        require:true
     }
 })
 
