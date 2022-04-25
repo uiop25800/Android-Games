@@ -18,7 +18,7 @@ const connectDB =async() => {
 }
 connectDB();
 
-const route =require('../Android-Games/routers/routersIndex');
+const route =require('../Server/routers/routersIndex');
 
 const app =express();
 
