@@ -18,7 +18,7 @@ const connectDB =async() => {
 }
 connectDB();
 
-const route =require('../routers/routersIndex');
+const route =require('./routers/routersIndex');
 
 const app =express();
 
