@@ -1,5 +1,5 @@
-const GameCategoryRoute =require('../routers/GameCategoryRoutes');
-const UserRoute =require('../routers/UserRoutes');
+const GameCategoryRoute =require('../controller/GameCategoryController');
+const UserRoute =require('../controller/UserController');
 
 function route(app){
     app.use('/categoryGame', GameCategoryRoute);
