@@ -5,15 +5,14 @@ const express = require("express");
 const router = express.Router();
 const User =require('../models/User');
 
-
+// http://localhost:5000/user/Register
 router.post("/Register", async(req,res)=>{
     try {
         const UserName = req.body.userName.trim();
         const PassWord = req.body.userPassword.trim();
         const FullName = req.body.fullName.trim();
         const Email = req.body.email.trim();
-        const Avatar = req.body.avatar.trim();
-
+        const Avatar = "https://i.imgur.com/AChld7K.png";
       if (!UserName || !PassWord) {
         return res.json({
           success: false,
@@ -64,7 +63,7 @@ router.post("/Register", async(req,res)=>{
       return res.json({ success: false, message: "Erorr !!" });
     }
 });
-
+// http://localhost:5000/user/Login
 router.post("/Login", async(req,res)=>{
     try {
       const UserName = req.body.userName.trim();

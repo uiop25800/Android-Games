@@ -5,6 +5,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 
+
 const StorageImage = multer.diskStorage({
   destination: (req, res, cb) => {
     cb(null, "uploads");
@@ -21,6 +22,8 @@ const upload = uploadLocal.fields([
     { name: "gameImage", maxCount: 1 },
     { name: "imageDetail", maxCount: 1 }
 ]);
+
+//http://localhost:5000/categoryGame/postGame
 
 router.post("/postGame", upload, async (req, res) => {
     try {
@@ -69,6 +72,8 @@ router.post("/postGame", upload, async (req, res) => {
   }
 );
 
+//http://localhost:5000/categoryGame/getAllGame
+
 router.get("/getAllGame", async (req,res)=>{
     try {
       const listAllGame = await GameCategory.find();
@@ -78,6 +83,8 @@ router.get("/getAllGame", async (req,res)=>{
       return res.json({ success: false, message: "Error !!" });
     }
 });
+
+//http://localhost:5000/categoryGame/getGameById
 
 router.get("/getGameById", async (req,res)=>{
     try {
@@ -92,6 +99,8 @@ router.get("/getGameById", async (req,res)=>{
       return res.json({ success: false, message: "Error !!" });
     }
 });
+
+//http://localhost:5000/categoryGame/updateGameById
 
 router.put("/updateGameById", async (req,res)=>{
     try {
@@ -141,6 +150,8 @@ router.put("/updateGameById", async (req,res)=>{
       return res.json({ success: false, message: "Error !!" });
     }
 });
+
+//http://localhost:5000/categoryGame/delGameById
 
 router.delete("/delGameById", async (req,res)=>{
     try {
