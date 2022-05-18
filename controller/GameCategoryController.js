@@ -4,6 +4,7 @@ const GameCategory =require('../models/GameCategory');
 const express = require("express");
 const router = express.Router();
 
+//http://localhost:5000/categoryGame/postGame
 router.post("/postGame", async (req, res) => {
     try {
         const GameName = req.body.gameName.trim();
@@ -47,7 +48,7 @@ router.post("/postGame", async (req, res) => {
     }
   }
 );
-
+//http://localhost:5000/categoryGame/getAllGame
 router.get("/getAllGame", async (req,res)=>{
     try {
       const listAllGame = await GameCategory.find();
@@ -57,7 +58,7 @@ router.get("/getAllGame", async (req,res)=>{
       return res.json({ success: false, message: "Error !!" });
     }
 });
-
+//http://localhost:5000/categoryGame/getGameById
 router.get("/getGameById", async (req,res)=>{
     try {
       const IdGame = req.body.idGame;
@@ -71,7 +72,7 @@ router.get("/getGameById", async (req,res)=>{
       return res.json({ success: false, message: "Error !!" });
     }
 });
-
+//http://localhost:5000/categoryGame/updateGameById
 router.put("/updateGameById", async (req,res)=>{
     try {
       const upIdGame = req.body.idGame;
@@ -120,7 +121,7 @@ router.put("/updateGameById", async (req,res)=>{
       return res.json({ success: false, message: "Error !!" });
     }
 });
-
+//http://localhost:5000/categoryGame/delGameById
 router.delete("/delGameById", async (req,res)=>{
     try {
       const delIdGame = req.body.idGame;
