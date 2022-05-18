@@ -1,5 +1,6 @@
 const imgur =require('imgur-node-api');
 const fs =require('fs-extra');
+const cloudinary = require("cloudinary");
 
 class Upload{
     async UploadFile(path) {
