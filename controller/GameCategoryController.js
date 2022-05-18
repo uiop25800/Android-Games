@@ -3,24 +3,6 @@ const uploadToImgur =require('../middleware/imgurUpload');
 const GameCategory =require('../models/GameCategory');
 const express = require("express");
 const router = express.Router();
-const multer = require("multer");
-
-const StorageImage = multer.diskStorage({
-  destination: (req, res, cb) => {
-    cb(null, "uploads");
-  },
-  filename: (req, file, cb) => {
-    console.log(file);
-    cb(null, file.originalname);
-  },
-});
-
-const uploadLocal = multer({ storage: StorageImage });
-
-const upload = uploadLocal.fields([
-    { name: "gameImage", maxCount: 1 },
-    { name: "imageDetail", maxCount: 1 }
-]);
 
 router.post("/postGame", async (req, res) => {
     try {
