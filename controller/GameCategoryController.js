@@ -22,15 +22,12 @@ const upload = uploadLocal.fields([
     { name: "imageDetail", maxCount: 1 }
 ]);
 
-router.post("/postGame", upload, async (req, res) => {
+router.post("/postGame", async (req, res) => {
     try {
-        console.log(req.files["gameImage"][0]);
-        console.log(req.files["imageDetail"][0]);
-
         const GameName = req.body.gameName.trim();
-        const GameImage = req.files["gameImage"][0].path;
+        const GameImage = req.body.gameImage;
         const FullDetail = req.body.fullDetail.trim();
-        const ImageDetail = req.files["imageDetail"][0].path;
+        const ImageDetail = req.body.imageDetail;
 
       if (!GameName || !GameImage || !FullDetail || !ImageDetail) {
         return res.json({
