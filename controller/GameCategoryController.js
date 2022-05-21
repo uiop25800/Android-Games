@@ -11,8 +11,9 @@ router.post("/postGame", async (req, res) => {
         const GameImage = req.body.gameImage;
         const FullDetail = req.body.fullDetail.trim();
         const ImageDetail = req.body.imageDetail;
+        const VideoYoutube = req.body.videoYoutubeId;
 
-      if (!GameName || !GameImage || !FullDetail || !ImageDetail) {
+      if (!GameName || !GameImage || !FullDetail || !ImageDetail || !VideoYoutube) {
         return res.json({
           success: false,
           message: "missing data !!" + GameImage,
@@ -33,6 +34,7 @@ router.post("/postGame", async (req, res) => {
             gameImage: LinkGameImage,
             fullDetail: FullDetail,
             imageDetail: LinkImageDetail,
+            videoYoutubeId: VideoYoutube,
           });
           await newGame.save();
           return res.json({
@@ -58,6 +60,16 @@ router.get("/getAllGame", async (req,res)=>{
       return res.json({ success: false, message: "Error !!" });
     }
 });
+//http://localhost:5000/categoryGame/getAllGameSortByDate
+router.get("/getAllGameSortByDate", async (req, res) => {
+  try {
+    const listAllGame = await GameCategory.find().sort({ dateToCreate :-1});
+    return res.json({ success: true, listAllGame });
+  } catch (error) {
+    console.log(error);
+    return res.json({ success: false, message: "Error !!" });
+  }
+});
 //http://localhost:5000/categoryGame/getGameById
 router.get("/getGameById", async (req,res)=>{
     try {
@@ -80,6 +92,7 @@ router.put("/updateGameById", async (req,res)=>{
       const upGameImage = req.body.gameImage;
       const upFullDetail = req.body.fullDetail;
       const upImageDetail = req.body.imageDetail;
+      const upVideoYoutube =req.body.videoYoutubeId;
       if (!upIdGame) {
         return res.json({ success: false, message: "Missing Data !!" });
       }
@@ -87,27 +100,33 @@ router.put("/updateGameById", async (req,res)=>{
       var flag = false;
       if (upResultGame.GameName != upGameName) {
         await GameCategory.findByIdAndUpdate(upIdGame, {
-          gameName: upGameName.trim(),
+          gameName: upGameName,
         });
         flag = true;
       }
       if (upResultGame.FullDetail != upFullDetail) {
         await GameCategory.findByIdAndUpdate(upIdGame, {
-          fullDetail: upFullDetail.trim(),
+          fullDetail: upFullDetail,
         });
         flag = true;
       }
       if (upGameImage && !upGameImage == "") {
         const upLinkGameImage = await upload.UploadFile(upGameImage);
         await GameCategory.findByIdAndUpdate(upIdGame, {
-          gameImage: upLinkGameImage.trim(),
+          gameImage: upLinkGameImage,
         });
         flag = true;
       }
       if (upImageDetail && !upImageDetail == "") {
         const upLinkImageDetail = await upload.UploadFile(upImageDetail);
         await GameCategory.findByIdAndUpdate(upIdGame, {
-          imageDetail: upLinkImageDetail.trim(),
+          imageDetail: upLinkImageDetail,
+        });
+        flag = true;
+      }
+      if(upResultGame.videoYoutubeId != upVideoYoutube){
+        await GameCategory.findByIdAndUpdate(upIdGame, {
+          videoYoutubeId: upVideoYoutube,
         });
         flag = true;
       }

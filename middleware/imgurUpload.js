@@ -11,7 +11,7 @@ class Upload{
                 console.log(Link);
                 resolve(Link);
               }
-              await fs.remove(path);
+              //await fs.remove(path);
             });
         });
     }

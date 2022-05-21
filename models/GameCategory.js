@@ -17,6 +17,14 @@ const SchemaGameCategory =Schema({
     imageDetail:{
         type:String,
         require:true
+    },
+    videoYoutubeId:{
+        type: String,
+        require: true
+    },
+    dateToCreate:{
+        type: Date,
+        default: Date.now
     }
 })
 

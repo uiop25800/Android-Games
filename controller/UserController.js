@@ -12,7 +12,7 @@ router.post("/Register", async(req,res)=>{
         const PassWord = req.body.userPassword.trim();
         const FullName = req.body.fullName.trim();
         const Email = req.body.email.trim();
-        const Avatar = "https://i.imgur.com/AChld7K.png";
+        const Avatar = "https://i.imgur.com/BsOP8fj.jpg";
       if (!UserName || !PassWord) {
         return res.json({
           success: false,
