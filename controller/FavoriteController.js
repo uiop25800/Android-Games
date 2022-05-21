@@ -39,7 +39,7 @@ router.post("/postFavorite", async (req, res) => {
         const NewFavorite = new Favorite({
           userId: UserId,
           gameId: GameId,
-          ameName: GameName,
+          gameName: GameName,
           gameImage: GameImage,
           fullDetail: FullDetail,
           imageDetail: ImageDetail,
