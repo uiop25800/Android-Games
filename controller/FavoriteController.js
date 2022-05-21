@@ -30,7 +30,7 @@ router.post("/postFavorite", async (req, res) => {
           userId: UserId,
           gameId: GameId,
         });
-        const findFavoriteInUserToGameName = await avorite.findOne({
+        const findFavoriteInUserToGameName = await Favorite.findOne({
           userId: UserId,
           gameName: GameName,
         });
